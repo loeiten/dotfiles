@@ -1,0 +1,120 @@
+alignment top_right
+background no
+border_width 1
+cpu_avg_samples 2
+default_color white
+default_outline_color white
+default_shade_color white
+draw_borders no
+draw_graph_borders no
+draw_outline no
+draw_shades yes
+use_xft yes
+xftfont DejaVu Sans Mono:size=10
+gap_x 5
+gap_y 5
+maximum_width 290
+minimum_size 5 5
+net_avg_samples 2
+no_buffers yes
+out_to_console no
+out_to_stderr no
+extra_newline no
+own_window yes
+own_window_class Conky
+own_window_type override
+own_window_transparent yes
+stippled_borders 0
+update_interval 2.0
+double_buffer yes
+uppercase no
+use_spacer none
+show_graph_scale no
+show_graph_range no
+
+color1 white
+color2 white
+color3 white
+
+TEXT
+###HEADLINE##################
+${image $HOME/.conky/mintlogomonob096.png -p 0,0 -s 32x32}${color1}${goto 44}${pre_exec cat /etc/issue.net} $machine
+${color1}${goto 44}Kernel: $kernel
+#############################
+
+####SYSTEM###################
+${color1}system
+${voffset -9}${color1}$hr
+#${color2}${pre_exec cat /etc/issue.net}$alignr${color2}$machine
+#${color1}OS $alignr${color2}${pre_exec cat /etc/issue.net}
+#${color1}Kernel $alignr${color2}$kernel
+#${color1}Arch $alignr${color2}$machine
+${color1}Hostname $alignr${color2}$nodename
+${color1}Processes $alignr${color2}$processes ($running_processes running)
+${color1}Uptime $alignr${color2}$uptime
+${color1}Load $alignr${color2}$loadavg
+${color1}RAM ${color2}$alignr$mem / $memmax
+${voffset -3}${color2}${membar 8}
+#############################
+
+####CPU######################
+${color1}cpu
+${voffset -9}${color1}$hr
+${color2}${pre_exec cat /proc/cpuinfo | grep 'model name' | sed -e 's/model name.*: //'| uniq | cut -c 1-26}
+${color1}CPU:1  ${color2}${cpu cpu1}%$alignr${color2}${freq_g cpu1} GHz / ${execi 10 sensors | grep  'Core 0' | awk '{print $3}'}
+${color1}CPU:2  ${color2}${cpu cpu2}%$alignr${color2}${freq_g cpu2} GHz / ${execi 10 sensors | grep  'Core 1' | awk '{print $3}'}
+${color1}CPU:3  ${color2}${cpu cpu3}%$alignr${color2}${freq_g cpu3} GHz / ${execi 10 sensors | grep  'Core 0' | awk '{print $3}'}
+${color1}CPU:4  ${color2}${cpu cpu4}%$alignr${color2}${freq_g cpu4} GHz / ${execi 10 sensors | grep  'Core 1' | awk '{print $3}'}
+${cpugraph cpu0}
+${voffset -10}${color1}CPU (avg.) ${alignr}${color2}${cpu cpu0}%
+#############################
+
+####HDD######################
+${color2}hdd
+${voffset -9}${color2}$hr
+${color1}/home ${color2}$alignr${fs_used /home} / ${fs_size /home}
+${voffset -3}${color2}${fs_bar 8 /home}
+${color1}swap ${color2}$alignr${swap} / ${swapmax}
+${voffset -3}${color2}${swapbar 8}
+${voffset -6}
+#############################
+
+#############
+## NETWORK ##
+#############
+${color2}network
+${voffset -9}${color2}$hr
+${if_match "${pre_exec cat /sys/class/net/eth0/operstate | sed -e 's/up/true/' -e 's/down/false/'}"=="true"}
+${color2}eth0 is up
+${color2}down${goto 60}${color2}${downspeed eth0}${goto 130}${voffset -4}${downspeedgraph eth0 26}
+${color2}${voffset -24}total${goto 60}${color2}${totaldown eth0}
+${voffset -6}
+${color2}up${goto 60}${color2}${upspeed eth0}${goto 130}${voffset -4}${upspeedgraph eth0 26}
+${color2}${voffset -24}total${goto 60}${color2}${totalup eth0}
+${endif}
+${if_match "${pre_exec cat /sys/class/net/wlan0/operstate | sed -e 's/up/true/' -e 's/down/false/'}"=="true"}
+${color2}wlan0 is up
+${color2}down${goto 60}${color2}${downspeed wlan0}${goto 130}${voffset -4}${downspeedgraph wlan0 26}
+${color2}${voffset -24}total${goto 60}${color2}${totaldown wlan0}
+${voffset -6}
+${color2}up${goto 60}${color2}${upspeed wlan0}${goto 130}${voffset -4}${upspeedgraph wlan0 26}
+${color2}${voffset -24}total${goto 60}${color2}${totalup wlan0}
+${endif}
+${color2}IP: ${color2}${alignr}${execi 600 wget -q -O - checkip.dyndns.org | sed -e 's/[^[:digit:]\|.]//g'}
+
+###############
+## PROCESSES ##
+###############
+${color2}top processes
+${voffset -9}${color2}$hr
+${color2}Name              CPU%   MEM%
+${color3} ${top name 1}${top cpu 1} ${top mem 1}
+${color3} ${top name 2}${top cpu 2} ${top mem 2}
+${color3} ${top name 3}${top cpu 3} ${top mem 3}
+${color3} ${top name 4}${top cpu 4} ${top mem 4}
+
+####FORTUNE##################
+${color1}fortune
+${voffset -9}${color1}$hr
+${color1}${execi 18000 fortune -s | fold -s -w36}
+#############################

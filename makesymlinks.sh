@@ -9,7 +9,8 @@
 HOME=~                      # Home folder
 dir=$(pwd)                  # dotfiles directory
 olddir=$HOME/dotfiles_old   # old dotfiles backup directory
-files="bashrc vimrc"        # list of files/folders to symlink in homedir
+# list of files/folders to symlink in homedir
+files="bashrc vimrc conkyrc conky"
 
 ##########
 

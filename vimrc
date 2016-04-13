@@ -18,6 +18,8 @@ call vundle#begin()
     Plugin 'The-NERD-tree'
     " YouCompleteMe plugin
     Plugin 'valloric/YouCompleteMe'
+    " Plugin which generates the .ycm_extra_conf.py file
+    Plugin 'rdnetto/YCM-Generator', { 'branch': 'stable'}
     " linediff plugin
     " https://github.com/AndrewRadev/linediff.vim
     Plugin 'AndrewRadev/linediff.vim'
@@ -109,6 +111,7 @@ nnoremap <leader>tc :tabclose<CR>
 " Diff this and diff off
 nnoremap <leader>dt :difft<CR>
 nnoremap <leader>do :diffoff<CR>
+vnoremap <leader>ld :Linediff<CR>
 " ==============================================================================
 
 

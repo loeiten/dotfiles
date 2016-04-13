@@ -9,10 +9,9 @@ alias la='ls -la'
 
 # The BOUT-dev
 export PYTHONPATH=$HOME/BOUT-dev/tools/pylib/:$PYTHONPATH
-export PYTHONPATH=$HOME/Documents/Utdanning/Danmarks_Tekniske_Universitet/Ph.D./BOUT-projects/cyto/:$PYTHONPATH
 
 # PETSc
-export PETSC_DIR=$HOME/petsc-3.4.5
+export PETSC_DIR=$HOME/petsc-3.6.3
 
 # For using vim as a editor in svn
 export SVN_EDITOR=vim

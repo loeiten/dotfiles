@@ -235,6 +235,8 @@ vnoremap <leader>lr9 xa\L(\R)<esc>hhhp
 " ==============================================================================
 " Path (for global ycm_extra_conf)
 let g:ycm_global_ycm_extra_conf = '/home/mmag/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+" Do not ask to confirm if ycm find a .ycm_extra_conf.py
+let g:ycm_confirm_extra_conf = 0
 " Go to definition
 nnoremap <leader>jd :YcmCompleter GoTo<CR>
 " ==============================================================================

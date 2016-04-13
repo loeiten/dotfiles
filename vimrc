@@ -237,8 +237,11 @@ vnoremap <leader>lr9 xa\L(\R)<esc>hhhp
 let g:ycm_global_ycm_extra_conf = '/home/mmag/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 " Do not ask to confirm if ycm find a .ycm_extra_conf.py
 let g:ycm_confirm_extra_conf = 0
-" Go to definition
-nnoremap <leader>jd :YcmCompleter GoTo<CR>
+" Go to definition (open in a new tab)
+" <C-w>s splits the tab horizontally
+" <C-k><C-o> goes to the previous buffer (above)
+" <C-j><C-w>T opens the buffer below in a new tab
+nnoremap <leader>jd :YcmCompleter GoTo<CR> <C-w>s <C-w><Up> <C-o> <C-w><Down> <C-w>T
 " ==============================================================================
 
 

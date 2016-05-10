@@ -28,6 +28,8 @@ call vundle#begin()
     " LaTeX-Box
     " NOTE: Comment this when using the LaTeX clean-up procedure
     Plugin 'LaTeX-Box-Team/LaTeX-Box'
+    " Fugitive (for git)
+    Plugin 'tpope/vim-fugitive'
 
     " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -380,7 +382,7 @@ function! Set_tex_Options()
     " Map keys
     nnoremap <leader>to :LatexTOC<CR>
     nnoremap <F5>  :w<CR> :!pdflatex -interaction=nonstopmode %<CR>
-            \:!bibtex %<CR>
+            \:!bibtex %:r<CR>
             \:!pdflatex -interaction=nonstopmode %<CR>
     inoremap <F5>  <ESC> :w<CR> :!pdflatex -interaction=nonstopmode %<CR>
             \:!bibtex %<CR>

@@ -116,5 +116,5 @@ ${color3} ${top name 4}${top cpu 4} ${top mem 4}
 ####FORTUNE##################
 ${color1}fortune
 ${voffset -9}${color1}$hr
-${color1}${execi 18000 fortune -s | fold -s -w36}
+${color1}You Rock!!!
 #############################

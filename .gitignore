@@ -1,1 +1,4 @@
 *.swp
+
+# Use :mkspell! % to activate on new system
+*.spl

@@ -1,0 +1,59 @@
+#!/usr/bin/env python
+
+"""
+Creates symlinks in the home directory to the files in this folder
+
+Based on
+http://blog.smalleycreative.com/tutorials/using-git-and-github-to-manage-your-dotfiles/
+"""
+
+import os, shutil
+
+home = os.path.expanduser("~")
+repoDir = os.path.dirname(os.path.realpath(__file__))
+originalOldDir = os.path.join(home, "dotfilesOld")
+
+# List of files/folders to symlink in homedir
+files = [\
+         "bashrc"                    ,\
+         "vimrc"                     ,\
+         "conkyrc"                   ,\
+         "conky"                     ,\
+         os.path.join("vim", "spell"),\
+        ]
+
+fileRepo = [os.path.join(repoDir, f) for f in files]
+fileHome = [os.path.join(home, "."+f) for f in files]
+
+# Create backupdir in home
+nr = 1
+oldDir = originalOldDir
+while(os.path.exists(oldDir)):
+    oldDir = originalOldDir + str(nr)
+    nr += 1
+
+os.makedirs(oldDir)
+
+print("Creating {} for backup of any existing dotfiles in {}".format(oldDir, home))
+fileBkup = [os.path.join(oldDir, "."+f) for f in files]
+
+print("...done\n")
+
+print("Moving any existing dotfiles in home to dotfilesOld directory\n")
+for fHome, fBkup in zip(fileHome, fileBkup):
+    if os.path.exists(fHome):
+        print("Moving {} -> {}".format(fHome, fBkup))
+        if os.path.isdir(fHome):
+            if not os.path.exists(fBkup):
+                os.makedirs(fBkup)
+        shutil.move(fHome, os.path.join(fBkup+'*'))
+
+print("\nCreating symlinks\n")
+for fRepo, fHome in zip(fileRepo, fileHome):
+    print("Symlinking to {} -> {}".format(fRepo, fHome))
+    if os.path.isdir(fRepo):
+        target_is_directory = True
+    else:
+        target_is_directory = False
+
+    os.symlink(fRepo, fHome, target_is_directory=target_is_directory)

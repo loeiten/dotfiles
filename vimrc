@@ -80,7 +80,15 @@ let g:LatexBox_Folding=1    " Enable folding
 let mapleader = "-"
 
 " Automatically cd into the directory that the file is in
-autocmd BufEnter * execute "chdir ".escape(expand("%:p:h"), ' ')
+autocmd BufEnter * :call TryChdir()
+
+function! TryChdir()
+    try
+        execute "chdir ".escape(expand("%:p:h"), ' ')
+    catch \E472\
+        echom "Could not chdir"
+    endtry
+endfunction
 
 " Own mappings
 " ==============================================================================
@@ -239,6 +247,12 @@ vnoremap <leader>lr9 xa\L(\R)<esc>hhhp
 let g:ycm_global_ycm_extra_conf = '/home/mmag/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 " Do not ask to confirm if ycm find a .ycm_extra_conf.py
 let g:ycm_confirm_extra_conf = 0
+" Let the location list be populated (:lopen opens the location list)
+let g:ycm_always_populate_location_list = 1
+" Apply YCM FixIt
+nnoremap <leader>fi :YcmCompleter FixIt<CR>
+" Apply YCM ForceCompile
+nnoremap <leader>fc :YcmForceCompileAndDiagnostics <CR>
 " Go to definition (open in a new tab)
 " <C-w>s splits the tab horizontally
 " <C-k><C-o> goes to the previous buffer (above)

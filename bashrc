@@ -11,7 +11,11 @@ alias la='ls -la'
 export PYTHONPATH=$HOME/BOUT-dev/tools/pylib/:$PYTHONPATH
 
 # PETSc
-export PETSC_DIR=$HOME/petsc-3.5.4
+export PETSC_DIR=$HOME/petsc-3.4.5
+
+# SLEPc
+export PETSC_ARCH=arch-linux2-cxx-debug
+export SLEPC_DIR=$HOME/slepc-3.4.4
 
 # For using vim as a editor in svn
 export SVN_EDITOR=vim

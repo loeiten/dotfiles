@@ -25,6 +25,13 @@ files = [\
 fileRepo = [os.path.join(repoDir, f) for f in files]
 fileHome = [os.path.join(home, "."+f) for f in files]
 
+# Check that the paths exists
+for folder in fileHome:
+    if not os.path.exists(folder):
+        os.makedirs(folder)
+        print("{} did not exist in advance, so the script created it".\
+                format(folder))
+
 # Create backupdir in home
 nr = 1
 oldDir = originalOldDir

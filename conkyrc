@@ -79,11 +79,27 @@ conky.text = [[
     ${voffset -6}
     #############################
 
-    #############
-    ## NETWORK ##
-    #############
+    #####################################################################
+    ## NETWORK                                                         ##
+    ## NOTE:                                                           ##
+    ## Seems like the wifi and eth names are changing from computer to ##
+    ## computer in linux mint. One can find the name by typing         ##
+    ## find /sys/class/net/ -iname "e*" |sed 's#.*/##'                 ##
+    ## but it seems like one cannot call a function within a function  ##
+    ##                                                                 ##
+    ## http://askubuntu.com/questions/583766/                          ##
+    ##      how-to-use-a-variable-inside-a-variable-in-conky           ##
+    ##                                                                 ##
+    ## and it is not possible to assign a variable name in conky       ##
+    ##                                                                 ##
+    ## https://bbs.archlinux.org/viewtopic.php?id=160771               ##
+    ##                                                                 ##
+    ## therefore a "stupid" approach is tried here                     ##
+    #####################################################################
+    ${voffset -9}
     ${color2}network
     ${voffset -9}${color2}$hr
+    ${voffset -60}
     ${if_match "${execi 65000 cat /sys/class/net/eno1/operstate | sed -e 's/up/true/' -e 's/down/false/'}"=="true"}
     ${color2}eno1 is up
     ${color2}down${goto 100}${color2}${downspeed eno1}${goto 160}${voffset -4}${downspeedgraph eno1 26}
@@ -92,6 +108,14 @@ conky.text = [[
     ${color2}up${goto 100}${color2}${upspeed eno1}${goto 160}${voffset -4}${upspeedgraph eno1 26}
     ${color2}${voffset -24}total${goto 100}${color2}${totalup eno1}
     ${endif}
+    ${if_match "${execi 65000 cat /sys/class/net/enp2s0f0/operstate | sed -e 's/up/true/' -e 's/down/false/'}"=="true"}
+    ${color2}enp2s0f0 is up
+    ${color2}down${goto 100}${color2}${downspeed enp2s0f0}${goto 160}${voffset -4}${downspeedgraph enp2s0f0 26}
+    ${color2}${voffset -24}total${goto 100}${color2}${totaldown enp2s0f0}
+    ${voffset -6}
+    ${color2}up${goto 100}${color2}${upspeed enp2s0f0}${goto 160}${voffset -4}${upspeedgraph enp2s0f0 26}
+    ${color2}${voffset -24}total${goto 100}${color2}${totalup enp2s0f0}
+    ${endif}
     ${if_match "${execi 65000 cat /sys/class/net/wlp2s0/operstate | sed -e 's/up/true/' -e 's/down/false/'}"=="true"}
     ${color2}wlp2s0 is up
     ${color2}down${goto 100}${color2}${downspeed wlp2s0}${goto 160}${voffset -4}${downspeedgraph wlp2s0 26}
@@ -99,6 +123,14 @@ conky.text = [[
     ${voffset -6}
     ${color2}up${goto 100}${color2}${upspeed wlp2s0}${goto 160}${voffset -4}${upspeedgraph wlp2s0 26}
     ${color2}${voffset -24}total${goto 100}${color2}${totalup wlp2s0}
+    ${endif}
+    ${if_match "${execi 65000 cat /sys/class/net/wlp3s0/operstate | sed -e 's/up/true/' -e 's/down/false/'}"=="true"}
+    ${color2}wlp3s0 is up
+    ${color2}down${goto 100}${color2}${downspeed wlp3s0}${goto 160}${voffset -4}${downspeedgraph wlp3s0 26}
+    ${color2}${voffset -24}total${goto 100}${color2}${totaldown wlp3s0}
+    ${voffset -6}
+    ${color2}up${goto 100}${color2}${upspeed wlp3s0}${goto 160}${voffset -4}${upspeedgraph wlp3s0 26}
+    ${color2}${voffset -24}total${goto 100}${color2}${totalup wlp3s0}
     ${endif}
     ${color2}IP: ${color2}${alignr}${execi 600 wget -q -O - checkip.dyndns.org | sed -e 's/[^[:digit:]\|.]//g'}
 

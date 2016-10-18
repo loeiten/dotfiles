@@ -99,7 +99,7 @@ conky.text = [[
     ${voffset -9}
     ${color2}network
     ${voffset -9}${color2}$hr
-    ${voffset -60}
+    ${voffset -30}
     ${if_match "${execi 65000 cat /sys/class/net/eno1/operstate | sed -e 's/up/true/' -e 's/down/false/'}"=="true"}
     ${color2}eno1 is up
     ${color2}down${goto 100}${color2}${downspeed eno1}${goto 160}${voffset -4}${downspeedgraph eno1 26}

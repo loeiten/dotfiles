@@ -19,10 +19,8 @@ export SVN_EDITOR=vim
 # Problems with /lib/libgfortran.so.3: version `GFORTRAN_1.4' not found
 export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libgfortran.so.3
 
-# added by Anaconda3 2.1.0 installer
-export PATH="$HOME/anaconda3/bin:$PATH"
-# Allow tab completion in conda
-eval "$(register-python-argcomplete conda)"
+# TexLive (https://www.tug.org/texlive/quickinstall.html)
+PATH=/usr/local/texlive/2016/bin/x86_64-linux:$PATH
 #}}}
 
 #{{{ LINUX MINT
@@ -147,4 +145,11 @@ fi
 if [ -x /usr/bin/mint-fortune ]; then
      /usr/bin/mint-fortune
 fi
+#}}}
+
+#{{{ ANACONDA
+# added by Anaconda3 2.1.0 installer
+export PATH="$HOME/anaconda3/bin:$PATH"
+# Allow tab completion in conda
+eval "$(register-python-argcomplete conda)"
 #}}}

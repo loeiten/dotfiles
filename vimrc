@@ -249,6 +249,8 @@ let g:ycm_global_ycm_extra_conf = '/home/mmag/.vim/bundle/YouCompleteMe/third_pa
 let g:ycm_confirm_extra_conf = 0
 " Let the location list be populated (:lopen opens the location list)
 let g:ycm_always_populate_location_list = 1
+" YCM Diagnose
+nnoremap <leader>di :YcmDiags<CR>
 " Apply YCM FixIt
 nnoremap <leader>fi :YcmCompleter FixIt<CR>
 " Apply YCM ForceCompile
@@ -336,6 +338,7 @@ function! Set_Python_Options()
     set textwidth=72
     " Sets the folding to syntax in python
     set foldmethod=marker
+    set foldmarker=#{{{,#}}}
     " Add comment
     nnoremap <leader>a :call ToggleComment("#")<CR>
 endfunction
@@ -345,8 +348,9 @@ endfunction
 " C and C++
 " ==============================================================================
 " Let global variable...
-" Allow pyclewn run in async mode, and don't spawn all the windows
-let g:pyclewn_args = "--gdb=async --window=bottom"
+" Run pyclewn in async, set windows to bottom and spawn terminal at /dev/pts/4
+let g:pyclewn_args = "--gdb=async --window=bottom --tty=/dev/pts/4"
+" Allow pyclewn run in async mode and spawn a terminal at /dev/pts/4
 function! Set_C_Cpp_Options()
     " Sets the folding to syntax in c++
     set foldmethod=syntax
@@ -356,12 +360,10 @@ function! Set_C_Cpp_Options()
     " %< is the filename without extention
     nnoremap <F5> :w<CR> :!./%< <CR>
     inoremap <F5> <ESC> :w<CR> :!./%< <CR>
-    " Conque GDB
-    nnoremap <F6> :w <CR> :make clean <CR> <CR> :make <CR> <CR>
     " Pyclewn mappings
     nnoremap <F6> :w <CR> :make clean <CR> <CR> :make <CR> <CR>
         \:tabe % <CR> :Pyclewn gdb --args %<<CR>
-        \:Cbreak main <CR> :Cmapkeys <CR> :Crun <CR>
+        \:Cbreak main <CR> :Cmapkeys <CR> :Cinferiortty <CR> :Crun <CR>
     nnoremap <F7> :Cunmapkeys<CR> :Cexitclewn<CR>
     nnoremap <leader>r :Crun<CR>
     nnoremap <leader>p :Cprint<SPACE>

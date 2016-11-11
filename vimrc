@@ -275,6 +275,20 @@ autocmd BufNewFile,BufRead,BufEnter Make,Makefile,make,make call Set_Makefile_Op
 autocmd BufNewFile,BufRead,BufEnter *.tex call Set_tex_Options()
 
 
+" Toggle colorcolumn
+" ==============================================================================
+function! g:ToggleColorColumn()
+  if &colorcolumn != ''
+    setlocal colorcolumn&
+  else
+    setlocal colorcolumn=81
+  endif
+endfunction
+
+nnoremap <silent> <leader>cc :call g:ToggleColorColumn()<CR>
+" ==============================================================================
+
+
 " Remove trailing whitespaces on save
 " ==============================================================================
 function! <SID>StripTrailingWhitespaces()
@@ -395,6 +409,11 @@ endfunction
 " tex-files
 " ==============================================================================
 function! Set_tex_Options()
+    " Let vim wrap the text softly, and will not force linebreaks
+    setlocal wrap                     " Softwrap
+    setlocal textwidth=0 wrapmargin=0 " Vim will not make newlines
+    setlocal linebreak                " --"--
+    setlocal nolist                   " list disables linebreak
     " Map keys
     nnoremap <leader>to :LatexTOC<CR>
     nnoremap <F5>  :w<CR> :!pdflatex -interaction=nonstopmode %<CR>
@@ -591,9 +610,9 @@ function! Format_TeX()
             if temp_string != ""
                 " As we ran the Clean_TeX() function above, all \begin{}
                 " environments should be the first thing appearing on a line,
-                " possibly preceeded by whitespaces. Therefore, we will split the
-                " temp_string (the whitespaces will not be a part of the split, and
-                " thence the first element shold be /begin
+                " possibly preceeded by whitespaces. Therefore, we will split
+                " the temp_string (the whitespaces will not be a part of the
+                " split, and thence the first element shold be /begin
                 let temp_string = split(temp_string)[0]
                 " We will now check if temp_string is one of the following
                 " (possibly followed by environmental specifiers)

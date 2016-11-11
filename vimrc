@@ -414,6 +414,8 @@ function! Set_tex_Options()
     setlocal textwidth=0 wrapmargin=0 " Vim will not make newlines
     setlocal linebreak                " --"--
     setlocal nolist                   " list disables linebreak
+    " Formatting when writing gq and writing text
+    set formatexpr=MyFormatExpr(v:lnum,v:lnum+v:count-1)
     " Map keys
     nnoremap <leader>to :LatexTOC<CR>
     nnoremap <F5>  :w<CR> :!pdflatex -interaction=nonstopmode %<CR>
@@ -432,6 +434,13 @@ function! Set_tex_Options()
                 \<CR>:call Clean_TeX()<CR>
                 \<CR>:call Format_TeX()<CR>
 endfunction
+
+" Formatting text
+"----------------
+function! MyFormatExpr(start, end)
+        silent execute a:start.','.a:end.'s/[.!?]\zs /\r/g'
+endfunction
+"----------------
 
 " Function for cleaning up equations
 "-----------------------------------

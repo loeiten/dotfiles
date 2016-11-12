@@ -187,6 +187,7 @@ iabbrev adn and
 iabbrev ahve have
 iabbrev implimentation implementation
 iabbrev lenght length
+iabbrev liek like
 iabbrev rigth right
 iabbrev taht that
 iabbrev tehn then

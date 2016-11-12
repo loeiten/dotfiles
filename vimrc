@@ -194,6 +194,7 @@ iabbrev teh the
 iabbrev woudl would
 iabbrev waht what
 iabbrev wtha what
+iabbrev wiht with
 " ==============================================================================
 
 
@@ -427,6 +428,7 @@ function! Set_tex_Options()
     nnoremap <F6>  :w<CR> :!rm -f *.log *.aux *.out<CR>
     inoremap <F6>  <ESC> :w<CR> :!rm -f *.log *.aux *.out<CR>
     nnoremap <F7>  :w<CR> :!okular %:r.pdf &<CR>
+    inoremap .<SPACE> .<CR>
     " Add comment
     nnoremap <leader>a :call ToggleComment("%")<CR>
     nnoremap <leader>cl :call Clean_TeX()<CR>

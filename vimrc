@@ -187,13 +187,17 @@ iabbrev adn and
 iabbrev ahve have
 iabbrev implimentation implementation
 iabbrev lenght length
+iabbrev liek like
 iabbrev rigth right
 iabbrev taht that
 iabbrev tehn then
 iabbrev teh the
+iabbrev ot to
+iabbrev pbd pdb
 iabbrev woudl would
 iabbrev waht what
 iabbrev wtha what
+iabbrev wiht with
 " ==============================================================================
 
 
@@ -223,6 +227,7 @@ set pastetoggle=<F2>
 
 " Select visual word
 nnoremap <SPACE> viw
+vnoremap <SPACE> iw
 
 " Go to start of line and end of line
 nnoremap <leader>H ^
@@ -273,6 +278,20 @@ autocmd BufNewFile,BufRead,BufEnter *.py call Set_Python_Options()
 autocmd BufNewFile,BufRead,BufEnter *.cxx,*.cpp,*.c,*.h,*.hxx call Set_C_Cpp_Options()
 autocmd BufNewFile,BufRead,BufEnter Make,Makefile,make,make call Set_Makefile_Options()
 autocmd BufNewFile,BufRead,BufEnter *.tex call Set_tex_Options()
+
+
+" Toggle colorcolumn
+" ==============================================================================
+function! g:ToggleColorColumn()
+  if &colorcolumn != ''
+    setlocal colorcolumn&
+  else
+    setlocal colorcolumn=81
+  endif
+endfunction
+
+nnoremap <silent> <leader>cc :call g:ToggleColorColumn()<CR>
+" ==============================================================================
 
 
 " Remove trailing whitespaces on save
@@ -395,6 +414,13 @@ endfunction
 " tex-files
 " ==============================================================================
 function! Set_tex_Options()
+    " Let vim wrap the text softly, and will not force linebreaks
+    setlocal wrap                     " Softwrap
+    setlocal textwidth=0 wrapmargin=0 " Vim will not make newlines
+    setlocal linebreak                " --"--
+    setlocal nolist                   " list disables linebreak
+    " Formatting when writing gq and writing text
+    set formatexpr=MyFormatExpr(v:lnum,v:lnum+v:count-1)
     " Map keys
     nnoremap <leader>to :LatexTOC<CR>
     nnoremap <F5>  :w<CR> :!pdflatex -interaction=nonstopmode %<CR>
@@ -406,6 +432,7 @@ function! Set_tex_Options()
     nnoremap <F6>  :w<CR> :!rm -f *.log *.aux *.out<CR>
     inoremap <F6>  <ESC> :w<CR> :!rm -f *.log *.aux *.out<CR>
     nnoremap <F7>  :w<CR> :!okular %:r.pdf &<CR>
+    inoremap .<SPACE> .<CR>
     " Add comment
     nnoremap <leader>a :call ToggleComment("%")<CR>
     nnoremap <leader>cl :call Clean_TeX()<CR>
@@ -413,6 +440,13 @@ function! Set_tex_Options()
                 \<CR>:call Clean_TeX()<CR>
                 \<CR>:call Format_TeX()<CR>
 endfunction
+
+" Formatting text
+"----------------
+function! MyFormatExpr(start, end)
+        silent execute a:start.','.a:end.'s/[.!?]\zs /\r/g'
+endfunction
+"----------------
 
 " Function for cleaning up equations
 "-----------------------------------
@@ -591,9 +625,9 @@ function! Format_TeX()
             if temp_string != ""
                 " As we ran the Clean_TeX() function above, all \begin{}
                 " environments should be the first thing appearing on a line,
-                " possibly preceeded by whitespaces. Therefore, we will split the
-                " temp_string (the whitespaces will not be a part of the split, and
-                " thence the first element shold be /begin
+                " possibly preceeded by whitespaces. Therefore, we will split
+                " the temp_string (the whitespaces will not be a part of the
+                " split, and thence the first element shold be /begin
                 let temp_string = split(temp_string)[0]
                 " We will now check if temp_string is one of the following
                 " (possibly followed by environmental specifiers)

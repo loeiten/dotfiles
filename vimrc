@@ -270,7 +270,7 @@ nnoremap <leader>jd :YcmCompleter GoTo<CR> <C-w>s <C-w><Up> <C-o> <C-w><Down> <C
 
 " File specific settings
 " For all files: Remove trailing whitespaces on save
-" autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 " For all files except makefile: Replace tabs with spaces
 autocmd BufWritePre *.py,*.cxx,*.cpp,*.c,*.h,*.hxx,*.tex retab! 4
 " If the filetype is found, a function specifying the settings is called

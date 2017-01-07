@@ -192,6 +192,8 @@ iabbrev rigth right
 iabbrev taht that
 iabbrev tehn then
 iabbrev teh the
+iabbrev ot to
+iabbrev pbd pdb
 iabbrev woudl would
 iabbrev waht what
 iabbrev wtha what
@@ -225,6 +227,7 @@ set pastetoggle=<F2>
 
 " Select visual word
 nnoremap <SPACE> viw
+vnoremap <SPACE> iw
 
 " Go to start of line and end of line
 nnoremap <leader>H ^

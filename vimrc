@@ -122,6 +122,9 @@ nnoremap <leader>tc :tabclose<CR>
 nnoremap <leader>dt :difft<CR>
 nnoremap <leader>do :diffoff<CR>
 vnoremap <leader>ld :Linediff<CR>
+
+" Spell repeat
+nnoremap <leader>sr :spellr<CR>
 " ==============================================================================
 
 
@@ -198,6 +201,8 @@ iabbrev woudl would
 iabbrev waht what
 iabbrev wtha what
 iabbrev wiht with
+iabbrev cartesian Cartesian
+iabbrev fourier Fourier
 " ==============================================================================
 
 

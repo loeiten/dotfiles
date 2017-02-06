@@ -13,7 +13,6 @@ Hasegawa
 Mima
 Wakatani
 Leddy
-VIENETA
 Mirabelle
 LAPD
 advection
@@ -99,3 +98,10 @@ Krylov
 Arnoldi
 GMRES
 spatio-temporal
+platikurtic
+cvode
+Rossby
+linearized
+wavenumber
+periodogram
+VINETA

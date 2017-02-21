@@ -30,6 +30,12 @@ call vundle#begin()
     Plugin 'LaTeX-Box-Team/LaTeX-Box'
     " Fugitive (for git)
     Plugin 'tpope/vim-fugitive'
+    " LanguageTool
+    " Requires java8
+    " sudo add-apt-repository ppa:webupd8team/java
+    " sudo apt update; sudo apt install oracle-java8-installer
+    " sudo apt install oracle-java8-set-default
+    Plugin 'dpelle/vim-LanguageTool'
 
     " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -74,6 +80,15 @@ let g:rbpt_max = 16
 " LaTeXBoX option
 " ==============================================================================
 let g:LatexBox_Folding=1    " Enable folding
+" ==============================================================================
+
+" LanguageTool
+" ==============================================================================
+let g:languagetool_jar='$HOME/LanguageTool-3.6/languagetool-commandline.jar'
+" let g:languagetool_lang='en-US'
+let g:languagetool_win_height='25'
+" Set the languagetool excetions
+let g:languagetool_disable_rules='COMMA_PARENTHESIS_WHITESPACE,CURRENCY,WHITESPACE_RULE,EN_UNPAIRED_BRACKETS,EN_QUOTES'
 " ==============================================================================
 
 " Set the global leader
@@ -125,6 +140,9 @@ vnoremap <leader>ld :Linediff<CR>
 
 " Spell repeat
 nnoremap <leader>sr :spellr<CR>
+
+" LanguageTool
+nnoremap <leader>lt :LanguageToolCheck<CR>
 " ==============================================================================
 
 

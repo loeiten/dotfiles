@@ -19,6 +19,7 @@ files = [\
          "vimrc"                     ,\
          "conkyrc"                   ,\
          "conky"                     ,\
+         "tmux.conf"                 ,\
          os.path.join("vim", "spell"),\
         ]
 

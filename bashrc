@@ -3,38 +3,36 @@
 #{{{ OWN ADDITION
 echo "This is going to be a good day!"
 
+# Clean the library path
+export LD_LIBRARY_PATH=""
+
 # Use the correct GCC
 GCC=`find gcc* -print -quit`
 if [ -d $GCC ]; then
-    export PATH=$HOME/$GCC/bin:$PATH
-    export LD_LIBRARY_PATH=$HOME/$GCC/lib:$LD_LIBRARY_PATH
-    export LD_LIBRARY_PATH=$HOME/$GCC/lib64:$LD_LIBRARY_PATH
+    export PATH="$HOME/$GCC/bin:$PATH"
+    export LD_LIBRARY_PATH="$HOME/$GCC/lib:$LD_LIBRARY_PATH"
+    export LD_LIBRARY_PATH="$HOME/$GCC/lib64:$LD_LIBRARY_PATH"
 fi
 
 # Export local libraries and binaries
-export LD_LIBRARY_PATH=$HOME/local/lib:$LD_LIBRARY_PATH
 export PATH="$HOME/local/bin:$PATH"
+export LD_LIBRARY_PATH="$HOME/local/lib:$LD_LIBRARY_PATH"
 
 # The BOUT-dev
-export PYTHONPATH=$HOME/BOUT-dev/tools/pylib/:$PYTHONPATH
+export PYTHONPATH="$HOME/BOUT-dev/tools/pylib/:$PYTHONPATH"
 
 # PETSc
-export PETSC_DIR=$HOME/petsc-3.4.5
+export PETSC_DIR="$HOME/petsc-3.4.5"
 
 # SLEPc
-export PETSC_ARCH=arch-linux2-cxx-debug
-export SLEPC_DIR=$HOME/slepc-3.4.4
+export PETSC_ARCH="arch-linux2-cxx-debug"
+export SLEPC_DIR="$HOME/slepc-3.4.4"
 
 # For using vim as a editor in svn
-export SVN_EDITOR=vim
-
-# FIXME
-# Problems with /lib/libgfortran.so.3: version `GFORTRAN_1.4' not found
-# export LD_PRELOAD=/usr/lib/x86_64-linux-gnu/libgfortran.so.3
-# export LD_PRELOAD=/usr/lib/x86_64-redhat-linux4E/lib64/libgfortran.so.3
+export SVN_EDITOR="vim"
 
 # TexLive (https://www.tug.org/texlive/quickinstall.html)
-PATH=/usr/local/texlive/2016/bin/x86_64-linux:$PATH
+export PATH="/usr/local/texlive/2016/bin/x86_64-linux:$PATH"
 #}}}
 
 #{{{ LINUX MINT

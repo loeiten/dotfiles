@@ -1,13 +1,25 @@
-#!/bin/bash
+#!/usr/bin/env bash
+
+#{{{ CLUSTER
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
+#}}}
 
 #{{{ OWN ADDITION
-echo "This is going to be a good day!"
+# echo in bash breaks scp
+# http://stackoverflow.com/questions/12440287/scp-doesnt-work-when-echo-in-bashrc
+# http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
+if [ -t 0 ]; then
+    echo "This is going to be a good day!"
+fi
 
 # Clean the library path
 export LD_LIBRARY_PATH=""
 
-# Use the correct GCC
-GCC=`find gcc* -print -quit`
+# Use the correct GCC, and suppress any error
+GCC=$(find gcc* -print -quit 2>/dev/null)
 if [ -d $GCC ]; then
     export PATH="$HOME/$GCC/bin:$PATH"
     export LD_LIBRARY_PATH="$HOME/$GCC/lib:$LD_LIBRARY_PATH"
@@ -160,8 +172,10 @@ fi
 #}}}
 
 #{{{ ANACONDA
-# added by Anaconda3 2.1.0 installer
+# added by the Anaconda3 installer
 export PATH="$HOME/anaconda3/bin:$PATH"
 # Allow tab completion in conda
-eval "$(register-python-argcomplete conda)"
+if [ -t 0 ]; then
+    eval "$(register-python-argcomplete conda 2>/dev/null)"
+fi
 #}}}

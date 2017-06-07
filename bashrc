@@ -29,6 +29,8 @@ fi
 # Export local libraries and binaries
 export PATH="$HOME/local/bin:$PATH"
 export LD_LIBRARY_PATH="$HOME/local/lib:$LD_LIBRARY_PATH"
+export PATH="$HOME/.local/bin:$PATH"
+export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 
 # The BOUT-dev
 export PYTHONPATH="$HOME/BOUT-dev/tools/pylib/:$PYTHONPATH"

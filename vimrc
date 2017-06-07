@@ -1,6 +1,9 @@
 "Learn scripting
 " http://learnvimscriptthehardway.stevelosh.com/
 
+" NOTE: The username is explicitly set in ycm_global_ycm_extra_conf, and may
+"       need to be changed
+
 " Vundle (Manages the plugins [needs to be first])
 " https://github.com/gmarik/Vundle.vim
 " ==============================================================================
@@ -272,7 +275,7 @@ vnoremap <leader>lr9 xa\L(\R)<esc>hhhp
 " YouCompleteMe
 " ==============================================================================
 " Path (for global ycm_extra_conf)
-let g:ycm_global_ycm_extra_conf = '/home/mmag/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '/home/michael/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 " Do not ask to confirm if ycm find a .ycm_extra_conf.py
 let g:ycm_confirm_extra_conf = 0
 " Let the location list be populated (:lopen opens the location list)

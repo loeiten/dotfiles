@@ -87,11 +87,11 @@ let g:LatexBox_Folding=1    " Enable folding
 
 " LanguageTool
 " ==============================================================================
-let g:languagetool_jar='$HOME/LanguageTool-3.6/languagetool-commandline.jar'
+let g:languagetool_jar='$HOME/LanguageTool-3.8/languagetool-commandline.jar'
 " let g:languagetool_lang='en-US'
 let g:languagetool_win_height='25'
 " Set the languagetool excetions
-let g:languagetool_disable_rules='COMMA_PARENTHESIS_WHITESPACE,CURRENCY,WHITESPACE_RULE,EN_UNPAIRED_BRACKETS,EN_QUOTES'
+let g:languagetool_disable_rules='COMMA_PARENTHESIS_WHITESPACE,CURRENCY,WHITESPACE_RULE,EN_UNPAIRED_BRACKETS,EN_QUOTES,MORFOLOGIK_RULE_EN_US'
 " ==============================================================================
 
 " Set the global leader

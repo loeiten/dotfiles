@@ -33,6 +33,8 @@ call vundle#begin()
     Plugin 'LaTeX-Box-Team/LaTeX-Box'
     " Fugitive (for git)
     Plugin 'tpope/vim-fugitive'
+    " Dracula theme
+    Plugin 'dracula/vim'
     " LanguageTool
     " Requires java8
     " sudo add-apt-repository ppa:webupd8team/java
@@ -55,6 +57,10 @@ filetype plugin indent on    " required
 " see :h vundle for more details or wiki for FAQ
 " Put your non-Plugin stuff after this line
 " ==============================================================================
+
+" Use the Dracula theme
+set termguicolors
+colorscheme dracula
 
 " Rainbow options
 " ==============================================================================
@@ -325,11 +331,14 @@ nnoremap <silent> <leader>cc :call g:ToggleColorColumn()<CR>
 function! <SID>StripTrailingWhitespaces()
     let l = line(".")
     let c = col(".")
+    let w = winsaveview()
     " Removes whitespace
     %s/\s\+$//e
     " Removes the end-lines
     %s/\($\n\s*\)\+\%$//e
+    execute "normal! Go"
     call cursor(l, c)
+    call winrestview(w)
 endfunction
 " ==============================================================================
 
@@ -706,3 +715,5 @@ function! Format_TeX()
 endfunction
 "---------------------------
 " ==============================================================================
+"
+

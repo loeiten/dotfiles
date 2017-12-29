@@ -11,7 +11,7 @@ import os, shutil
 
 home = os.path.expanduser("~")
 repoDir = os.path.dirname(os.path.realpath(__file__))
-originalOldDir = os.path.join(home, "dotfilesOld")
+originalOldDir = os.path.join(home, "dotFilesOld")
 
 # List of files/folders to symlink in homedir
 files = [\
@@ -65,3 +65,4 @@ for fRepo, fHome in zip(fileRepo, fileHome):
         target_is_directory = False
 
     os.symlink(fRepo, fHome, target_is_directory=target_is_directory)
+

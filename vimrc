@@ -391,8 +391,9 @@ function! Set_Python_Options()
     " Set the textwrap
     set textwidth=72
     " Sets the folding to syntax in python
-    set foldmethod=marker
-    set foldmarker=#{{{,#}}}
+    set foldmethod=indent
+    " set foldmethod=marker
+    " set foldmarker=#{{{,#}}}
     " Add comment
     nnoremap <leader>a :call ToggleComment("#")<CR>
 endfunction
@@ -716,4 +717,5 @@ endfunction
 "---------------------------
 " ==============================================================================
 "
-
+"
+"

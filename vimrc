@@ -41,6 +41,7 @@ call vundle#begin()
     " sudo apt update; sudo apt install oracle-java8-installer
     " sudo apt install oracle-java8-set-default
     Plugin 'dpelle/vim-LanguageTool'
+    Plugin 'python-mode/python-mode'
 
     " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -337,6 +338,7 @@ function! <SID>StripTrailingWhitespaces()
     " Removes the end-lines
     %s/\($\n\s*\)\+\%$//e
     execute "normal! Go"
+    execute "normal! D"
     call cursor(l, c)
     call winrestview(w)
 endfunction
@@ -385,17 +387,11 @@ endfunction
 " Python
 " ==============================================================================
 function! Set_Python_Options()
-    " F5 will run the python script
-    nnoremap <F5> :w<CR> :! python %<CR>
-    inoremap <F5> <Esc> :w<CR> :! python %<CR>
-    " Set the textwrap
-    set textwidth=72
-    " Sets the folding to syntax in python
-    set foldmethod=indent
-    " set foldmethod=marker
-    " set foldmarker=#{{{,#}}}
+    nnoremap <F5> :w<CR> :PymodeRun<CR>
+    inoremap <F5> <ESC> :PymodeRun<CR>
     " Add comment
     nnoremap <leader>a :call ToggleComment("#")<CR>
+    " autocmd BufWritePre * :PymodeLintAuto
 endfunction
 " ==============================================================================
 
@@ -716,6 +712,4 @@ function! Format_TeX()
 endfunction
 "---------------------------
 " ==============================================================================
-"
-"
-"
+

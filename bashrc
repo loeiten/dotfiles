@@ -15,6 +15,10 @@ if [ -t 0 ]; then
     echo "This is going to be a good day!"
 fi
 
+# Use UTF-8
+export LC_ALL=en_US.utf-8
+export LANG="$LC_ALL"
+
 # Clean the library path
 export LD_LIBRARY_PATH=""
 
@@ -28,25 +32,15 @@ fi
 
 # Export local libraries and binaries
 export PATH="$HOME/local/bin:$PATH"
-export LD_LIBRARY_PATH="$HOME/local/lib:$LD_LIBRARY_PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export LD_LIBRARY_PATH="$HOME/local/lib:$LD_LIBRARY_PATH"
 export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 
-# The BOUT-dev
-export PYTHONPATH="$HOME/BOUT-dev/tools/pylib/:$PYTHONPATH"
-
-# PETSc
-export PETSC_DIR="$HOME/petsc-3.4.5"
-
-# SLEPc
-export PETSC_ARCH="arch-linux2-cxx-debug"
-export SLEPC_DIR="$HOME/slepc-3.4.4"
-
 # For using vim as a editor in svn
-export SVN_EDITOR="vim"
+# export SVN_EDITOR="vim"
 
 # TexLive (https://www.tug.org/texlive/quickinstall.html)
-export PATH="/usr/local/texlive/2016/bin/x86_64-linux:$PATH"
+# export PATH="/usr/local/texlive/2016/bin/x86_64-linux:$PATH"
 #}}}
 
 #{{{ LINUX MINT
@@ -174,10 +168,6 @@ fi
 #}}}
 
 #{{{ ANACONDA
-# added by the Anaconda3 installer
 export PATH="$HOME/anaconda3/bin:$PATH"
-# Allow tab completion in conda
-if [ -t 0 ]; then
-    eval "$(register-python-argcomplete conda 2>/dev/null)"
-fi
 #}}}
+

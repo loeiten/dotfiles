@@ -20,17 +20,17 @@ call vundle#begin()
     " NERD-tree plugin
     Plugin 'The-NERD-tree'
     " YouCompleteMe plugin
-    Plugin 'valloric/YouCompleteMe'
+    " Plugin 'valloric/YouCompleteMe'
     " Plugin which generates the .ycm_extra_conf.py file
-    Plugin 'rdnetto/YCM-Generator', { 'branch': 'stable'}
+    " Plugin 'rdnetto/YCM-Generator', { 'branch': 'stable'}
     " linediff plugin
     " https://github.com/AndrewRadev/linediff.vim
-    Plugin 'AndrewRadev/linediff.vim'
+    " Plugin 'AndrewRadev/linediff.vim'
     " Rainbow paranthesis
-    Plugin 'kien/rainbow_parentheses.vim'
+    " Plugin 'kien/rainbow_parentheses.vim'
     " LaTeX-Box
     " NOTE: Comment this when using the LaTeX clean-up procedure
-    Plugin 'LaTeX-Box-Team/LaTeX-Box'
+    " Plugin 'LaTeX-Box-Team/LaTeX-Box'
     " Fugitive (for git)
     Plugin 'tpope/vim-fugitive'
     " Dracula theme
@@ -40,8 +40,8 @@ call vundle#begin()
     " sudo add-apt-repository ppa:webupd8team/java
     " sudo apt update; sudo apt install oracle-java8-installer
     " sudo apt install oracle-java8-set-default
-    Plugin 'dpelle/vim-LanguageTool'
-    Plugin 'python-mode/python-mode'
+    " Plugin 'dpelle/vim-LanguageTool'
+    " Plugin 'python-mode/python-mode'
 
     " All of your Plugins must be added before the following line
 call vundle#end()            " required

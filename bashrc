@@ -109,6 +109,13 @@ else
 fi
 unset color_prompt force_color_prompt
 
+# Git branch in prompt.
+parse_git_branch() {
+        git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
+    }
+
+PS1="$PS1\[\033[32m\]\$(parse_git_branch)\[\033[00m\] "
+
 # If this is an xterm set the title to user@host:dir
 case "$TERM" in
 xterm*|rxvt*)
@@ -168,6 +175,22 @@ fi
 #}}}
 
 #{{{ ANACONDA
-export PATH="$HOME/anaconda3/bin:$PATH"
+# export PATH="$HOME/anaconda3/bin:$PATH"  # commented out by conda initialize
 #}}}
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/michael/opt/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/michael/opt/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/michael/opt/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/michael/opt/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 

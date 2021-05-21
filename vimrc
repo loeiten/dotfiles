@@ -282,7 +282,7 @@ vnoremap <leader>lr9 xa\L(\R)<esc>hhhp
 " YouCompleteMe
 " ==============================================================================
 " Path (for global ycm_extra_conf)
-let g:ycm_global_ycm_extra_conf = '/home/michaell/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+let g:ycm_global_ycm_extra_conf = '$HOME/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 " Do not ask to confirm if ycm find a .ycm_extra_conf.py
 let g:ycm_confirm_extra_conf = 0
 " Let the location list be populated (:lopen opens the location list)
@@ -716,4 +716,3 @@ endfunction
 " Fix paste bug triggered by the above inoremaps
 " https://github.com/johndgiese/dotvim/issues/4#issuecomment-442151962
 set t_BE=
-

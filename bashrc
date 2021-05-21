@@ -7,7 +7,6 @@ if [ -f /etc/bashrc ]; then
 fi
 
 
-#{{{ OWN ADDITION
 # echo in bash breaks scp
 # http://stackoverflow.com/questions/12440287/scp-doesnt-work-when-echo-in-bashrc
 # http://tldp.org/LDP/Bash-Beginners-Guide/html/sect_07_01.html
@@ -41,9 +40,8 @@ export LD_LIBRARY_PATH="$HOME/.local/lib:$LD_LIBRARY_PATH"
 
 # TexLive (https://www.tug.org/texlive/quickinstall.html)
 # export PATH="/usr/local/texlive/2016/bin/x86_64-linux:$PATH"
-#}}}
 
-#{{{ LINUX MINT
+
 # If not running interactively, don't do anything
 case $- in
     *i*) ;;
@@ -172,12 +170,6 @@ fi
 if [ -x /usr/bin/mint-fortune ]; then
      /usr/bin/mint-fortune
 fi
-#}}}
-
-#{{{ ANACONDA
-# export PATH="$HOME/anaconda3/bin:$PATH"  # commented out by conda initialize
-#}}}
-
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
